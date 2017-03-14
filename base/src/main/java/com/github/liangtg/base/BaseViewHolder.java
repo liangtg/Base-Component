@@ -1,19 +1,13 @@
-package com.liangtg.base;
+package com.github.liangtg.base;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 /**
- * Created by liangtg on 15-7-29.
+ * Created by liangtg on 15-8-11.
  */
-public class BaseViewHolder {
-    private View holder;
-
-    public BaseViewHolder(Context context, int layoutId, ViewGroup container) {
-        this(LayoutInflater.from(context).inflate(layoutId, container, false));
-    }
+public class BaseViewHolder implements View.OnClickListener {
+    private final View holder;
 
     public BaseViewHolder(View view) {
         holder = view;
@@ -40,4 +34,7 @@ public class BaseViewHolder {
         return null;
     }
 
+    @Override
+    public void onClick(View v) {
+    }
 }
