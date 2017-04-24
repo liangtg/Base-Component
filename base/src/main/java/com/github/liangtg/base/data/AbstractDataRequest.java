@@ -5,37 +5,51 @@ import android.os.Looper;
 
 import com.squareup.otto.Bus;
 
-import okhttp3.Callback;
-
-public abstract class AbstractDataRequest implements DataRequester.DataRequest, Callback, Runnable {
+public abstract class AbstractDataRequest<T> implements DataRequest<T> {
+    private RuntimeException exception;
     private Handler handler = new Handler(Looper.getMainLooper());
-    private boolean canceled = false;
+    private boolean cancle = false;
     private Bus bus;
-    private Object result;
+    private T result;
 
     public AbstractDataRequest(Bus bus) {
         this.bus = bus;
     }
 
     @Override
-    public void cancel() {
-        canceled = true;
+    public void cancle() {
+        cancle = true;
     }
 
-    protected boolean isCanceled() {
-        return canceled;
-    }
-
-    protected void setResult(Object result) {
-        this.result = result;
-        handler.post(this);
+    public boolean isCancle() {
+        return cancle;
     }
 
     @Override
-    public void run() {
-        if (!isCanceled()) {
-            bus.post(result);
+    public T data() {
+        return result;
+    }
+
+    protected void setResult(T result) {
+        if (isCancle()) return;
+        exception = new RuntimeException("set result when:");
+        this.result = result;
+        handler.post(new UIRunnable());
+    }
+
+    private class UIRunnable implements Runnable {
+        @Override
+        public void run() {
+            if (!isCancle()) {
+                try {
+                    bus.post(result);
+                } catch (Exception e) {
+                    exception.initCause(e);
+                    throw exception;
+                }
+            }
         }
     }
+
 
 }

@@ -38,7 +38,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void initAppBar() {
-        Toolbar appBar = (Toolbar) findViewById(R.id.app_bar);
+        Toolbar appBar = (Toolbar) findViewById(R.id.toolbar);
         if (null != appBar) {
             setSupportActionBar(appBar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(displayUp());

@@ -7,7 +7,7 @@ public abstract class BaseResponse {
     public int code = -1;
     public String error;
 
-    public BaseResponse defaultError(Exception e) {
+    public BaseResponse defaultError(Throwable e) {
         error = "请检查网络";
         return this;
     }

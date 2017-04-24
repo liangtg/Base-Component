@@ -1,16 +1,17 @@
 package com.github.liangtg.base;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by liangtg on 15-8-11.
+ * Created by liangtg on 17-3-17.
  */
-public class BaseViewHolder implements View.OnClickListener {
-    private final View holder;
 
-    public BaseViewHolder(View view) {
-        holder = view;
+public abstract class BaseRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    public BaseRecyclerViewHolder(View itemView) {
+        super(itemView);
     }
 
     @SuppressWarnings("unchecked")
@@ -20,16 +21,12 @@ public class BaseViewHolder implements View.OnClickListener {
 
     @SuppressWarnings("unchecked")
     public <T extends View> T get(int id) {
-        return (T) holder.findViewById(id);
-    }
-
-    public View getContainer() {
-        return holder;
+        return (T) itemView.findViewById(id);
     }
 
     public Context getContext() {
-        if (null != holder) {
-            return holder.getContext();
+        if (null != itemView) {
+            return itemView.getContext();
         }
         return null;
     }
@@ -41,4 +38,5 @@ public class BaseViewHolder implements View.OnClickListener {
 
     protected void onClick(View v, int id) {
     }
+
 }

@@ -9,12 +9,12 @@ import com.squareup.otto.Bus;
 import java.io.IOException;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Response;
 
-public class GsonCallback<T extends BaseResponse> extends AbstractDataRequest {
+public class GsonCallback<T extends BaseResponse> extends AbstractDataRequest implements Callback {
     private static final String EMPTY_JSON = "{}";
     private Class<T> responseType;
-    private Object propertyObj;
 
     public GsonCallback(Bus bus, Class<T> responseType) {
         super(bus);
@@ -23,7 +23,6 @@ public class GsonCallback<T extends BaseResponse> extends AbstractDataRequest {
 
     @Override
     public void onFailure(Call call, IOException e) {
-        DataRequester.logRequest(call.request(), e);
         T target = new Gson().fromJson(EMPTY_JSON, responseType);
         target.defaultError(e);
         setResult(target);
@@ -31,8 +30,6 @@ public class GsonCallback<T extends BaseResponse> extends AbstractDataRequest {
 
     @Override
     public void onResponse(Call call, Response response) throws IOException {
-        DataRequester.logRequest(call.request());
-        DataRequester.logResponse(response);
         try {
             T result = processResponse(response);
             setResult(result);
