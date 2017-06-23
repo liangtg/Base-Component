@@ -1,0 +1,4 @@
+- 强大的RecyclerView粘性头部[https://github.com/oubowu/StickyItemDecoration](https://github.com/oubowu/StickyItemDecoration)
+- 强大的RecyclerAdapter框架 BRVAH[https://github.com/CymChad/BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
+- 手势缩放ImageVIew [https://github.com/chrisbanes/PhotoView](https://github.com/chrisbanes/PhotoView)
+- jsoup: Java HTML Parser[https://jsoup.org/](https://jsoup.org/)
