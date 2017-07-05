@@ -7,6 +7,8 @@ public abstract class PageDataProvider {
 
     private boolean working = false;
     private boolean haveMoreData = true;
+    private boolean onceWorked = false;
+
     private int page = 1;
 
     public void refresh() {
@@ -32,6 +34,7 @@ public abstract class PageDataProvider {
     }
 
     public void endPage(boolean success, boolean more) {
+        onceWorked = true;
         working = false;
         if (success) {
             page++;
@@ -45,6 +48,10 @@ public abstract class PageDataProvider {
 
     public boolean haveMoreData() {
         return haveMoreData;
+    }
+
+    public boolean onceWorked() {
+        return onceWorked;
     }
 
     /**
