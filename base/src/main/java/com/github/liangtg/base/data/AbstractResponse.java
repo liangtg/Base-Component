@@ -3,11 +3,11 @@ package com.github.liangtg.base.data;
 /**
  * Created by liangtg on 16-5-11.
  */
-public abstract class BaseResponse {
+public abstract class AbstractResponse {
     public int code = -1;
     public String error;
 
-    public BaseResponse defaultError(Throwable e) {
+    public AbstractResponse defaultError(Throwable e) {
         error = "请检查网络";
         return this;
     }
@@ -20,7 +20,7 @@ public abstract class BaseResponse {
         return null;
     }
 
-    public BaseResponse error(int code) {
+    public AbstractResponse error(int code) {
         this.code = code;
         return this;
     }

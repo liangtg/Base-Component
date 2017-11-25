@@ -13,7 +13,7 @@ import retrofit2.Response;
  * Created by liangtg on 17-3-23.
  */
 
-public class RetrofitCallback<T extends BaseResponse> extends AbstractDataRequest implements Callback<T> {
+public class RetrofitCallback<T extends AbstractResponse> extends AbstractDataRequest implements Callback<T> {
     private static final String EMPTY_JSON = "{}";
     private Class<T> responseType;
 

@@ -37,6 +37,11 @@ public abstract class AbstractDataRequest<T> implements DataRequest<T> {
         handler.post(new UIRunnable());
     }
 
+    @Override
+    public int hashCode() {
+        return bus.hashCode();
+    }
+
     private class UIRunnable implements Runnable {
         @Override
         public void run() {
@@ -50,6 +55,4 @@ public abstract class AbstractDataRequest<T> implements DataRequest<T> {
             }
         }
     }
-
-
 }

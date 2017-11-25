@@ -19,6 +19,16 @@ public class ViewPost {
         }
     }
 
+    public static void delayClick(final View view) {
+        view.setClickable(false);
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.setClickable(true);
+            }
+        }, 300);
+    }
+
     static class LayoutChangedListener implements View.OnLayoutChangeListener {
         Runnable task;
         WeakReference<View> reference;

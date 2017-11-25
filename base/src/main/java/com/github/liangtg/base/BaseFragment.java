@@ -99,7 +99,7 @@ public class BaseFragment extends Fragment {
     }
 
     public void showToast(String msg) {
-        if (!getActivity().isFinishing()) {
+        if (!noViewOrFinish()) {
             if (null == toast) {
                 toast = Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG);
             }

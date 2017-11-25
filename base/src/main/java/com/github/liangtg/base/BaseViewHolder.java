@@ -19,9 +19,6 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
-
 /**
  * Created by liangtg on 15-8-11.<br/>
  * thanks https://github.com/JoanZapata/base-adapter-helper
@@ -147,35 +144,6 @@ public class BaseViewHolder implements View.OnClickListener {
     public BaseViewHolder setImageDrawable(int viewId, Drawable drawable) {
         ImageView view = retrieveView(viewId);
         view.setImageDrawable(drawable);
-        return this;
-    }
-
-    /**
-     * Will download an image from a URL and put it in an ImageView.<br/>
-     * It uses Square's Picasso library to download the image asynchronously and put the result into the ImageView.<br/>
-     * Picasso manages recycling of views in a ListView.<br/>
-     * If you need more control over the Picasso settings, use {BaseViewHolder#setImageBuilder}.
-     *
-     * @param viewId   The view id.
-     * @param imageUrl The image URL.
-     * @return The BaseViewHolder for chaining.
-     */
-    public BaseViewHolder setImageUrl(int viewId, String imageUrl) {
-        ImageView view = retrieveView(viewId);
-        Picasso.with(getContext()).load(imageUrl).into(view);
-        return this;
-    }
-
-    /**
-     * Will download an image from a URL and put it in an ImageView.<br/>
-     *
-     * @param viewId         The view id.
-     * @param requestBuilder The Picasso request builder. (e.g. Picasso.with(context).load(imageUrl))
-     * @return The BaseViewHolder for chaining.
-     */
-    public BaseViewHolder setImageBuilder(int viewId, RequestCreator requestBuilder) {
-        ImageView view = retrieveView(viewId);
-        requestBuilder.into(view);
         return this;
     }
 

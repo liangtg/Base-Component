@@ -12,7 +12,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class GsonCallback<T extends BaseResponse> extends AbstractDataRequest implements Callback {
+public class GsonCallback<T extends AbstractResponse> extends AbstractDataRequest implements Callback {
     private static final String EMPTY_JSON = "{}";
     private Class<T> responseType;
 
@@ -34,7 +34,7 @@ public class GsonCallback<T extends BaseResponse> extends AbstractDataRequest im
             T result = processResponse(response);
             setResult(result);
         } catch (Exception e) {
-            BaseResponse target = new Gson().fromJson(EMPTY_JSON, this.responseType);
+            AbstractResponse target = new Gson().fromJson(EMPTY_JSON, this.responseType);
             Logger.e(e, "");
             setResult(target.error(-1));
         }
