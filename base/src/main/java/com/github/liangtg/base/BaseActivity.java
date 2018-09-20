@@ -66,6 +66,11 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    protected void singleTop(Intent intent) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+    }
+
     public void showToast(String msg) {
         if (!isFinishing()) {
             if (null == toast) {
